@@ -8,6 +8,7 @@ const MongoDBConnectionHelper = require('./helpers/MongoDBConnectionHelper');
 
 const logger = require('./middlewares/logger');
 const jwt = require('./middlewares/jwt');
+const TarefaController = require('./controllers/TarefaController');
 
 class App {
     #controllers;
@@ -53,7 +54,8 @@ class App {
         // atribui para propriedade #controllers a lista de controllers disponiveis da aplicação
         this.#controllers = [
             new LoginController(this.express),
-            new UsuarioController(this.express)
+            new UsuarioController(this.express),
+            new TarefaController(this.express)
         ];
     }
 
