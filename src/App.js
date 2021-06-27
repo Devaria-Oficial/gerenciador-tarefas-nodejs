@@ -6,6 +6,7 @@ const UsuarioController = require('./controllers/UsuarioController');
 const AppConstants = require('./enum/AppConstants');
 const MongoDBConnectionHelper = require('./helpers/MongoDBConnectionHelper');
 
+const cors = require('./middlewares/cors');
 const logger = require('./middlewares/logger');
 const jwt = require('./middlewares/jwt');
 const TarefaController = require('./controllers/TarefaController');
@@ -34,6 +35,9 @@ class App {
         // registra os middlewares para fazer a conversão das requisições da API
         this.express.use(express.urlencoded({ extended: true }));
         this.express.use(express.json());
+
+        // registra o middleware para habilitar requisições de outros dominios
+        this.express.use(cors);
 
         // registra o middleware do jwt para fazer validação do acesso as rotas através das requisições recebidas
         this.express.use(jwt);

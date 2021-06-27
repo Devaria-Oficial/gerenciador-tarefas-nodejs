@@ -33,7 +33,10 @@ module.exports = (req, res, next) => {
                 && urlRrequisicaoContemParteDaRotaPublica
             )
         )
-        && rota.metodo === req.method.toUpperCase()
+        && (
+            rota.metodo === req.method.toUpperCase()
+            || req.method.toUpperCase() === 'OPTIONS'
+        )
     });
     
     if (rotaPublica) {
